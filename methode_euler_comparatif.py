@@ -3,7 +3,7 @@
 """
 Created on Wed Jun 17 19:08:29 2020
 
-@author: maison
+@author: Francois Gachelin
 """
 
 from numpy import *
