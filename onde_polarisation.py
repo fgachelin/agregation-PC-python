@@ -5,10 +5,9 @@ Créé le Thu Jun 18 09:56:12 2020
 
 @auteur: François Gachelin
 
-E_x*cos(wt)+Ey*cos(wt+phi)
-cos(x)=sin(x+pi/2), sin(x) en retard de cos(x) de pi/2
-cos(x-pi/2)=sin(x)
-cos(x+pi/2)=sin(x+pi)=-sin(x)
+vecE(t)=vecE_x*cos(wt)+vecE_y*cos(wt-phi)
+    cos(wt-phi) est en avance sur cos(wt)
+    E_y est axe rapide,E_x est axe_lent
 
 lame quart d'onde
     dephasage k*lamb/4=pi/2
