@@ -14,7 +14,7 @@ import scipy.fftpack
 f= figure("DFT")
 
 '''
-exemples de fonctions
+fonctions usuelles
 '''
 
 def gaussienne(x):
@@ -71,7 +71,7 @@ def triangle_simple(x):
         return T/2-abs(x)
     
 def f(x):
-    return (sin(0.1*2*pi*x))**3
+    return (cos(0.1*2*pi*x))**2
 
 '''
 Paramètres de discrétisation
@@ -80,7 +80,7 @@ Ici x de -x_max à x_max
 Pour x de 0 à x_max, redéfinir dx=x_max/N
 '''
 x_max=100
-N=5000#nombre de points
+N=10000#nombre de points
 dx=2*x_max/N#pas d'échantillonnage
 
 '''
@@ -96,7 +96,6 @@ g1.plot(x,y)
 
 '''
 FFT(s(t))
-
 Le graphique n'affiche que les valeurs positives de la TF, d'où l'allure des sincs pour FFT porte par exemple.
 '''
 
@@ -108,7 +107,7 @@ tf_f=abs(tf_f.real/max(abs(tf_f.real)))#normalise yf
 g2=subplot(122)
 g2.plot(xf, tf_f,"b-")
 g2.set_title("$DFT$",fontsize=16)
-g2.set_xlim(0.01,0.5)
+g2.set_xlim(0.01,1)
 
 
 show()
