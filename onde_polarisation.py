@@ -10,8 +10,13 @@ cos(x)=sin(x+pi/2), sin(x) en retard de cos(x) de pi/2
 cos(x-pi/2)=sin(x)
 cos(x+pi/2)=sin(x+pi)=-sin(x)
 
-lame quart d'onde ajoute dephasage k*lamb/4=pi/2
-lame demi onde ajoute dephasage k*lamb/2=pi
+lame quart d'onde
+    dephasage k*lamb/4=pi/2
+    recitligne<->circulaire    
+    
+lame demi onde
+    dephasage k*lamb/2=pi
+    symétrique: gauche<->droit
 
 gauche=sens trigo avec vecteur d'onde vers nous
 
@@ -93,8 +98,3 @@ for _ in t:
     l4.set_data(trace[0],trace[1])
     
     pause(0.05)
-    
-
-
-
-
