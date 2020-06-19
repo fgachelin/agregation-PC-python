@@ -12,6 +12,11 @@ cos(x+pi/2)=sin(x+pi)=-sin(x)
 
 lame quart d'onde ajoute dephasage k*lamb/4=pi/2
 lame demi onde ajoute dephasage k*lamb/2=pi
+
+gauche=sens trigo avec vecteur d'onde vers nous
+
+cf illustration sur
+http://olivier.granier.free.fr/cariboost_files/Tr-PC-pola-lumiere-1213.pdf
 """
 
 from numpy import *
@@ -24,20 +29,20 @@ représentation graphique
 '''
 
 f=figure("Polarisation onde électromagnétique")
-f.suptitle(r"$\vec{E}(t)=cos(2\pi ft)\vec{u}_x+cos(2\pi ft+\Phi)\vec{u}_y$",fontsize=28)
+f.suptitle(r"$\vec{E}(t)=cos(2\pi ft)\vec{u}_x+cos(2\pi ft-\Phi)\vec{u}_y$",fontsize=28)
 g1=subplot(111)
-g1.set_xlim(-4,4)
-g1.set_ylim(-4,4)
-txt=g1.text(0,3.2,"$\Phi=0$",fontsize=20)#plus pratique que les titres mal placés
+g1.set_xlim(-2,2)
+g1.set_ylim(-2,2)
+txt=g1.text(0,1.5,"$\Phi=0$",fontsize=20)#plus pratique que les titres mal placés
 
 t=linspace(0,20,1000)
 
 phi=0
 
 def onde(t):
-    E_x=3
-    E_y=3
-    return E_x*cos(2*pi*t),E_y*cos(2*pi*t+phi)
+    E_x=1
+    E_y=1
+    return E_x*cos(2*pi*t),E_y*cos(2*pi*t-phi)
 
 l1,=g1.plot(t,t,"b-",label="$E_x$")
 l2,=g1.plot(t,t,"g-",label="$E_y$")
