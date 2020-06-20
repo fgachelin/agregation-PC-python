@@ -8,6 +8,7 @@ Créé le Thu Jun 18 09:56:12 2020
 vecE(t)=vecE_x*cos(wt)+vecE_y*cos(wt-phi)
     cos(wt-phi) est en avance sur cos(wt)
     E_y est axe rapide,E_x est axe_lent
+    
 
 lame quart d'onde
     dephasage k*lamb/4=pi/2
@@ -37,21 +38,23 @@ f.suptitle(r"$\vec{E}(t)=cos(2\pi ft)\vec{u}_x+cos(2\pi ft-\Phi)\vec{u}_y$",font
 g1=subplot(111)
 g1.set_xlim(-2,2)
 g1.set_ylim(-2,2)
-txt=g1.text(0,1.5,"$\Phi=0$",fontsize=20)#plus pratique que les titres mal placés
+txt_phi=g1.text(0,1.6,"$\Phi=0$",fontsize=20)
+txt_theta=g1.text(0,1.2,r"$(\vec{u}_x,\vec{E})=\pi /4$",fontsize=20)
 
 t=linspace(0,20,1000)
 
-phi=0
+phi,theta=0,pi/4
 
 def onde(t):
-    E_x=1
-    E_y=1
+    E_x=cos(theta)
+    E_y=sin(theta)
     return E_x*cos(2*pi*t),E_y*cos(2*pi*t-phi)
 
-l1,=g1.plot(t,t,"b-",label="$E_x$")
-l2,=g1.plot(t,t,"g-",label="$E_y$")
-l3,=g1.plot(t,t,"r-",label="$E$")
+l1,=g1.plot(t,t,"b-",label=r"$\vec{E}_x$ (axe lent)")
+l2,=g1.plot(t,t,"g-",label=r"$\vec{E}_y$ (axe rapide)")
+l3,=g1.plot(t,t,"r-",label=r"$\vec{E}$")
 l4,=g1.plot([],[],"r-")
+
 
 trace=[[],[]]
 
@@ -63,18 +66,27 @@ show()
 ajuster un paramètre par ui avec un curseur
 '''
 
-subplots_adjust(bottom=0.2)#réduit g1 pour laisser palce au slider
+subplots_adjust(bottom=0.25)#réduit g1 pour laisser palce au slider
+
 rect=f.add_axes([0.1,0.05,0.8,0.03])#emplacement du curseur
 slider=Slider(rect,"$\Phi=$",-pi,2*pi,0)#paramètres du curseur
+
+rect2=f.add_axes([0.1,0.1,0.8,0.03])#emplacement du curseur
+slider2=Slider(rect2,r"$(\vec{u}_x,\vec{E})=$",0,pi,pi/4,)#paramètres du curseur
+
 def maj(_):#met à jour l1 avec les valeurs du curseur
     global slider
     global phi
-    phi=(slider.val//(pi/4))*pi/4
-    txt.set_text("$\Phi=$"+str(round(phi,2))+" $rad$")
-    l4.set_data([],[])
     global trace
+    global theta
+    phi=(slider.val//(pi/4))*pi/4
+    theta=slider2.val
+    txt_phi.set_text("$\Phi="+str(round(phi,2))+"rad$")
+    txt_theta.set_text(r"$(\vec{u}_x,\vec{E})="+str(round(theta,2))+" rad$")
+    l4.set_data([],[])
     trace=[[],[]]
 slider.on_changed(maj)
+slider2.on_changed(maj)
 
 
 '''
@@ -97,3 +109,8 @@ for _ in t:
     l4.set_data(trace[0],trace[1])
     
     pause(0.05)
+    
+
+
+
+
