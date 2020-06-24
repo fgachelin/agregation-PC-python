@@ -14,11 +14,9 @@ w=0
 def paquet_ondes(dw,t):
     global w
     w=arange(1-dw,1+dw,0.001)#pas de linspace pour garder même écart entre deux fréquences
-    #w=linspace(1-dw,1+dw,10)
     a=0
     for _ in w:
        a=a+sin(_*t)
-       #*exp(-t**2/10000)
     return a
    
 t=linspace(-1000,1000,4000)

@@ -5,6 +5,14 @@ Créé le Thu Jun 18 09:56:12 2020
 
 @auteur: François Gachelin
 
+Oscillateur forcé avec amortissement
+    RLC avec GBF
+    électron élastiquement lié
+    masse-ressort et forçage
+    
+Mesurer Q (A_max/2**0.5) et le comparer avec w*tau=w/gamma=1/gamma
+    
+A comparer avec resolution numérique oscillateur_forcé.py
 """
 
 from numpy import *
@@ -17,9 +25,9 @@ représentation graphique
 '''
 
 f=figure("Résonance")
-f.suptitle(r"$\frac{1}{(\omega^2-\omega_0^2)+j\Gamma\omega}$",fontsize=30)
+f.suptitle(r"A(x)=$\frac{1}{(1-x^2)+j\frac{x}{Q}}$",fontsize=30)
 g1=subplot(111)
-g1.set_xlabel(r"$\frac{\omega}{\omega_0}$",fontsize=26)
+g1.set_xlabel(r"$x=\frac{\omega}{\omega_0}$",fontsize=26)
 g1.set_ylabel(r"$Amplitude$",fontsize=26,rotation=0,color="red")
 g1.set_ylim(-30,30)
 g1.grid()
@@ -28,8 +36,9 @@ y_droite=g1.twinx()
 y_droite.set_ylim(-4,4)
 y_droite.set_ylabel(r"$déphasage(rad)$",rotation=0,fontsize=26,color="blue")
 
+texte=g1.text(0,g1.get_ylim()[0]/2,r"$Q=\frac{\omega_0}{\Gamma}=\frac{1}{\Gamma}$",fontsize=26)
 
-w=linspace(0,3,500)
+w=linspace(0,2,500)
 
 
 gamma=1
@@ -40,8 +49,7 @@ l1,=g1.plot(w,signal(w).real,"y-",label="Partie réelle")
 l2,=g1.plot(w,signal(w).imag,"g-",label="Partie imaginaire")
 l3,=g1.plot(w,abs(signal(w)),"r-",label="Amplitude")
 l4,=g1.plot(w,angle(signal(w)),"b-",label="Phase")
-
-legend()
+g1.legend()
 show()
 
 
@@ -59,6 +67,8 @@ def maj(_):#met à jour l1 avec les valeurs du curseur
     l2.set_ydata(signal(w).imag) 
     l3.set_ydata(abs(signal(w))) 
     l4.set_ydata(angle(signal(w))*30/4) 
+    Q=1/gamma
+    texte.set_text(r"$Q=\frac{\omega_0}{\Gamma}="+str(round(Q,2))+"$")
     
 slider.on_changed(maj)
 
