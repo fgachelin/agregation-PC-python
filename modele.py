@@ -5,6 +5,8 @@ Créé le Thu Jun 18 09:56:12 2020
 
 @auteur: François Gachelin
 
+manque champs de vecteur(quiver) et lignes de niveau (contour)
+
 """
 
 from numpy import *
