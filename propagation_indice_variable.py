@@ -19,9 +19,7 @@ Fibre optique
 
 from numpy import *
 from matplotlib.pyplot import *
-from matplotlib.widgets import Slider, TextBox
-
-
+from matplotlib.widgets import Slider
 
 
 '''
@@ -40,7 +38,7 @@ def trajectoire(i_0,y_0):
     s=sign(i_0)
     
     dx=0.02#pas
-    N=1000#nombre de points
+    N=2000#nombre de points
 
     x_data=linspace(0,N*dx,N+1)
     y_data=[y_0]
@@ -69,9 +67,9 @@ f=figure("Propagation dans un milieu d'indice variable")
 n_y="1+a*y"
 g1=subplot(131)
 g1.set_title("$n(z)="+n_y+"$",fontsize=16)
-x,y=trajectoire(-5e-2,1)
+x,y=trajectoire(-1,1)
 g1.plot(x,y,"r-")
-x,y=trajectoire(5e-2,1)
+x,y=trajectoire(1,1)
 g1.plot(x,y,"g-")
 
 n_y="1-a*y"
